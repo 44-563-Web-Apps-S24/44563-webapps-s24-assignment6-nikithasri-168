@@ -6,6 +6,38 @@
 <body>
 
 <h2>Animal game by Nikitha Sri Garapati</h2>
+<form>
+    <label for="hidden_animal_name">The hidden animal type</label>
+    <input type ="password" id="hidden_animal_name" value="Chicken"><br>
+
+    <label for="guess_animal_name">Guess the animal </label>
+    <input type ="text" id="guess_animal_name">
+
+    <input type="button" onclick="checkAnimal()" value="Check the Guess">
+</form>
+<p id="result">Correct/Wrong?</p>
+<script>
+    var wrong=0;
+    var correct=0;
+    function checkAnimal()
+    {
+        var input1 = document.getElementById("hidden_animal_name").value;
+        var input2 = document.getElementById("guess_animal_name").value;
+        message = document.getElementById("result")
+        if(input1==input2)
+        {
+            correct++;
+            alert("You got it right");
+            message.innerHTML = "Ruff ruff"+correct;
+        }
+        else
+        {
+            wrong++;
+            alert("Sorry")
+            message.innerHTML = "Grrrr"+wrong;
+        }
+    }
+</script>
 
 </body>
 </html> 
