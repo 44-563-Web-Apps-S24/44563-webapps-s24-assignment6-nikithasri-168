@@ -15,12 +15,25 @@
     <p id="result">
         total
     </p>
+    <form action="">
+        <div id="results">Mathematical Calculations: </div>
+    
+        
+        <input type="radio" id="sum" onclick="chooseOp()" name="calc"  value="sum">
+        <label for="sum">Sum</label>
+        <input type="radio" id="mult" onclick="chooseOp()" name="calc"  value="multiply">
+        <label for="mult">multiply</label>
+        <input type="radio" id="exp" onclick="chooseOp()" name="calc"  value="exponent">
+        <label for="exp">exponent</label>
+      </form>
+    
+      <p id="result">Here is the result!! </p>
     <script>
+        let myOutput = "Totals are: ";
         function discount() {
         let price = parseFloat(document.getElementById("price").value);
         let number = parseFloat(document.getElementById("count").value);
         let deduction = parseFloat(document.getElementById("deduction").value);
-        let myOutput = "";
      
         for (let i = 0; i < 5; i++) {
             let discountedPrice = price * number - (price * number * (deduction / 100));
@@ -30,22 +43,7 @@
      
         document.getElementById('totals').innerHTML = 'Totals are: ' + myOutput;
      }
-    </script>
-    <form>
-        <div id="results">Mathematical Calculations: </div>
-    
-        <label for="sum">Sum</label>
-        <input type="radio" id="sum" onclick="chooseOp()" name="operation"  value="sum">
-        <label for="mult">multiply</label>
-        <input type="radio" id="mult" onclick="chooseOp()" name="operation"  value="multiply">
-        <label for="exp">exponent</label>
-        <input type="radio" id="exp" onclick="chooseOp()" name="operation"  value="exponent">
-      </form>
-    
-      <p id="result">Here is the result!! </p>
-    
-     <script>
-            function chooseOp() {
+     function chooseOp() {
                 let price = parseFloat(document.getElementById("price").value);
                 let deduction = parseFloat(document.getElementById("deduction").value);
                 let sum = document.getElementById("sum").checked;
@@ -66,7 +64,7 @@
                     document.getElementById("result").innerHTML = price + ' raised to the power of ' + deduction + ' is ' + result;
                 }
             }
-     </script>
+    </script>       
     
      
 
