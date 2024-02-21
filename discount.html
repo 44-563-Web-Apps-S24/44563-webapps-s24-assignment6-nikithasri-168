@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Discount Calc</title>
+    </head>
+<body>
+    <h2>Nikitha Sri Garapati discount calculations</h2>
+    <label for="price">Enter price per</label>
+    <input type="number" name="price" id="price" value="10">
+    <label for="count">Enter the number of items</label>
+    <input type="number" name="count" id="count" value="9">
+    <label for="deduction"> Enter the discount percent</label>
+    <input type="number" name="deduction" id="deduction" value="5">
+    <input type="button" onclick="discount()" value="Show total">
+    <p id="result">
+        total
+    </p>
+    <script>
+        function discount() {
+        let price = parseFloat(document.getElementById("price").value);
+        let number = parseFloat(document.getElementById("count").value);
+        let deduction = parseFloat(document.getElementById("deduction").value);
+        let myOutput = "";
+     
+        for (let i = 0; i < 5; i++) {
+            let discountedPrice = price * number - (price * number * (deduction / 100));
+            myOutput += `${deduction}% is ${discountedPrice.toFixed(1)}; `;
+            deduction++;
+        }
+     
+        document.getElementById('totals').innerHTML = 'Totals are: ' + myOutput;
+     }
+    </script>
+    <form>
+        <div id="results">Mathematical Calculations: </div>
+    
+        <label for="sum">Sum</label>
+        <input type="radio" id="sum" onclick="chooseOp()" name="operation"  value="sum">
+        <label for="mult">multiply</label>
+        <input type="radio" id="mult" onclick="chooseOp()" name="operation"  value="multiply">
+        <label for="exp">exponent</label>
+        <input type="radio" id="exp" onclick="chooseOp()" name="operation"  value="exponent">
+      </form>
+    
+      <p id="result">Here is the result!! </p>
+    
+     <script>
+            function chooseOp() {
+                let price = parseFloat(document.getElementById("price").value);
+                let deduction = parseFloat(document.getElementById("deduction").value);
+                let sum = document.getElementById("sum").checked;
+                let mul = document.getElementById("mult").checked;
+                let exp = document.getElementById("exp").checked;
+    
+                if(sum) {
+                    result = price + deduction;
+                    document.getElementById("result").innerHTML = 'Sum of ' + price + ' and ' + deduction + ' is ' + result;
+            
+                }
+                else if(mul) {
+                    result = price * deduction;
+                    document.getElementById("result").innerHTML = 'Product of ' + price + ' and ' + deduction + ' is ' + result;
+                }
+                else if(exp) {
+                    result = Math.pow(price, deduction);
+                    document.getElementById("result").innerHTML = price + ' raised to the power of ' + deduction + ' is ' + result;
+                }
+            }
+     </script>
+    
+     
+
+</body>
+</html> 
