@@ -15,7 +15,16 @@
 
     <input type="button" onclick="checkAnimal()" value="Check the Guess">
 </form>
-<p id="result">Correct/Wrong?</p>
+<p id="Result">Correct: 0 | Wrong: 0</p>
+<div class="container">
+    <div class="row">
+        <p><b>Click the below image</b></p>
+        <div id="imageContainer">
+            <img id="displayImage" src="images/Fizz.jpg" alt="AppyFizz" width="150" height="150"
+                onclick="selectImage()">
+        </div>
+    </div>
+</div>
 <script>
     var wrong=0;
     var correct=0;
@@ -36,7 +45,11 @@
             alert("Sorry")
             message.innerHTML = "Grrrr"+wrong;
         }
+        //update result
+        const resultValue = document.getElementById("Result");
+        resultValue.innerHTML = `Correct: ${correct} | Wrong: ${wrong}`;
     }
+    
     var useImage = 1;
 
         function selectImage() {
@@ -44,15 +57,15 @@
 
             switch (useImage) {
                 case 1:
-                    imageElement.src = "Images/Fizz.jpg";
+                    imageElement.src = "images/Fizz.jpg";
                     useImage = 2;
                     break;
                 case 2:
-                    imageElement.src = "Images/Pepsi.jpg";
+                    imageElement.src = "images/Pepsi.jpg";
                     useImage = 3;
                     break;
                 case 3:
-                    imageElement.src = "Images/Redwine.jpg";
+                    imageElement.src = "images/Redwine.jpg";
                     useImage = 1;
                     break;
             }
