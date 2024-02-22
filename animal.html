@@ -6,87 +6,75 @@
 <body>
 
 <h2>Animal game by Nikitha Sri Garapati</h2>
+<h2>Getting input</h2>
+
 <form>
-    <label for="hidden_animal_name">The hidden animal type</label>
-    <input type ="password" id="hidden_animal_name" value="Chicken"><br>
+    <label for="secretAnimal">The hidden animal type</label>
+    <input type="password" id="secretAnimal" value="Chicken">
 
-    <label for="guess_animal_name">Guess the animal </label>
-    <input type ="text" id="guess_animal_name">
+    <label for="guessAnimal">Guess the animal</label>
+    <input type="text" id="guessAnimal">
 
-    <input type="button" onclick="checkAnimal()" value="Check the Guess">
+    <button type="button" class="btn btn-success" onclick="checkAnimal()">Check the guess</button>
 </form>
-<p id="Result">Correct: 0 | Wrong: 0</p>
-<div class="container">
-    <div class="row">
-        <p><b>Click the below image</b></p>
-        <div id="imageContainer">
-            <img id="displayImage" src="images/Fizz.jpg" alt="AppyFizz" width="150" height="150"
-                onclick="selectImage()">
-        </div>
-    </div>
-</div>
-<!-- Adding div for displaying correct and wrong guesses -->
-<div class="container mt-3">
-    <div class="row">
-        <div class="col">
-            <p id="guessResults">Correct guesses: 0 | Wrong guesses: 0</p>
-        </div>
-    </div>
-</div>
+
+<p id="resultHolder">Correct: 0 | Wrong: 0</p>
+
+<h4>Click On Image</h4>
+
+<div>
+    <img src="orangemojito.jpg" id="myimage" width="150" height="150" onclick="selectImage()">
+  </div>
+
+  </body>
 
 <script>
-    var wrong = 0;
-    var correct = 0;
+    let correct = 0;
+    let wrong = 0;
 
     function checkAnimal() {
-        var input1 = document.getElementById("hidden_animal_name").value;
-        var input2 = document.getElementById("guess_animal_name").value;
-        var message = document.getElementById("guessResults");
-
-        if (input1 === input2) {
+        if (wrong < 10)
+        {
+        const secretAnimal = document.getElementById("secretAnimal").value;
+        const guessedAnimal = document.getElementById("guessAnimal").value;
+     
+        if (secretAnimal.toLowerCase() === guessedAnimal.toLowerCase()) {
             correct++;
-            message.textContent = `Correct guesses: ${correct} | Wrong guesses: ${wrong}`;
+            alert("Ruff ruff");
         } else {
             wrong++;
-            message.textContent = `Correct guesses: ${correct} | Wrong guesses: ${wrong}`;
+            alert("Grrrr");
+        }
 
-            // If wrong guesses exceed correct guesses, replace onclick property
-            if (wrong > correct) {
-                var button = document.querySelector('input[type="button"]');
-                button.setAttribute("onclick", "tooManyWrongGuesses()");
+        const result = document.getElementById("resultHolder");
+        result.innerHTML = `Correct: ${correct} | Wrong: ${wrong}`;
+    }
+    else{ alert("Sorry, too many wrong guesses")}
+    }
+  
+        var useImage = 1
+        function selectImage() {
+            switch (useImage) {
+                case 1:
+                    document.getElementById("myimage").src = "rasperrywidow.jpg";
+                    useImage++
+                    break
+                case 2:
+                    document.getElementById("myimage").src = "orangemojito.jpg";
+                    useImage++
+                    break
+                case 3:
+                    document.getElementById("myimage").src = "Roselavender.jpg";
+                    useImage = 1
+                    break
+                default:
+
+
+
             }
         }
 
-        const resultElement = document.getElementById("Result");
-        resultElement.textContent = `Correct guesses: ${correct} | Wrong guesses: ${wrong}`;
-    }
-
-    // Function to handle too many wrong guesses
-    function tooManyWrongGuesses() {
-        alert("Sorry, too many wrong guesses.");
-    }
-
-    var useImage = 1;
-
-    function selectImage() {
-        var imageElement = document.getElementById("displayImage");
-
-        switch (useImage) {
-            case 1:
-                imageElement.src = "images/Fizz.jpg";
-                useImage = 2;
-                break;
-            case 2:
-                imageElement.src = "images/Pepsi.jpg";
-                useImage = 3;
-                break;
-            case 3:
-                imageElement.src = "images/Redwine.jpg";
-                useImage = 1;
-                break;
-        }
-    }
-</script>
+                    </script>
 
 </body>
 </html>
