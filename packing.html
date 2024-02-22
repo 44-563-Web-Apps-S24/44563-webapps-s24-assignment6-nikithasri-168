@@ -7,48 +7,65 @@
 
 <h2>Nikitha Sri Garapati packs for a trip</h2>
 
-<form action="">
-    <label for="packlight">Pack Light</label>
-    <input type="checkbox" id="packlight" value="true">
-    <label for="Carryon">Carry on</label>
-    <input type="checkbox" id="carryon" value="true">
-    <label for="tablet">Tablet</label>
-    <input type="checkbox" id="tablet" value="false">
-    <input type="button" value="Select for Packing" onclick="selectPack()">
+<form id="checkboxForm">
+    <div class="form-group form-check">
+        <input class="form-check-input" type="checkbox" id="light" name="light" value="True">
+        <label class="form-check-label" for="light">Pack light</label>
+    </div>
+    <div class="form-group form-check">
+        <input class="form-check-input" type="checkbox" id="carry" name="carry" value="True">
+        <label class="form-check-label" for="carry">Carry on</label>
+    </div>
+    <div class="form-group form-check">
+        <input class="form-check-input" type="checkbox" id="tablet" name="tablet" value="False">
+        <label class="form-check-label" for="tablet">Tablet</label>
+    </div>
+    <br>
+    <button class="btn btn-primary" type="button" onclick="selectPack()">Select for packing</button>
 </form>
- 
- 
-<p id="results">result</p>
-<form>
-    <label for="month">Enter travel month</label>
-    <input type ="text" id="month" name="month" value="May"> <br>
- 
-    <label for="price">Enter price</label>
-    <input type ="text" id="price" name="price" value=""> <br>
- 
-    <input type="button" onclick="updatePack()" value="Update the pack">
+<div class="mt-4" id="packingResult"></div>
+<form id="updateForm">
+    <div class="form-group">
+        <label for="travelMonth">Enter travel month</label>
+        <input class="form-control" type="text" id="travelMonth" name="travelMonth" value="May">
+    </div>
+    <div class="form-group">
+        <label for="price">Enter price</label>
+        <input class="form-control" type="text" id="price" name="price">
+    </div>
+    <button class="btn btn-primary" type="button" onclick="updatePack()">Update the pack</button>
 </form>
-<p id="result">result</p>
+<div class="mt-4" id="updateResult"></div>
+</div>
+
 <script>
-var my_pack={};
-function selectPack()
-{
-     my_pack={};
-    my_pack.packlight=document.getElementById("packlight").checked;
-    my_pack.carryon=document.getElementById("carryon").checked;
-    my_pack.tablet=document.getElementById("tablet").checked;
-    document.getElementById("results").textContent=JSON.stringify(my_pack);
+let my_pack = {};
+const out = document.getElementById("packingResult");
+
+function selectPack() {
+    my_pack = {};
+    my_pack.light = document.getElementById("light").checked;
+    my_pack.carry = document.getElementById("carry").checked;
+    my_pack.tablet = document.getElementById("tablet").checked;
+    out.innerHTML = JSON.stringify(my_pack);
+
+    // Bonus
+    const correctGuesses = Object.values(my_pack).filter(value => value).length;
+    const wrongGuesses = Object.keys(my_pack).length - correctGuesses;
+
+    if (wrongGuesses > correctGuesses) {
+        document.getElementById("checkboxForm").onclick = function() {
+            alert("Sorry, too many wrong guesses.");
+        };
+    }
 }
-function updatePack()
-{
-    my_pack={};
-    var month = document.getElementById("month").value;
-    var price = document.getElementById("price").value;
-    my_pack.month=document.getElementById("month").value;
-    my_pack.price=document.getElementById("price").value;
-   
-    document.getElementById("result").textContent=JSON.stringify(my_pack);
- 
+
+function updatePack() {
+    console.log("Updating pack");
+    const updateResult = document.getElementById("updateResult");
+    my_pack.month = document.getElementById("travelMonth").value;
+    my_pack.price = document.getElementById("price").value;
+    updateResult.innerHTML = JSON.stringify(my_pack);
 }
 </script>
 </body>
